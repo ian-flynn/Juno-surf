@@ -10,7 +10,7 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       console.log('passport callback function fired');
-      // console.log(profile);
+      console.log('user is: ', profile);
       done(null, profile);
     }
   )
