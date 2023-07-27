@@ -5,37 +5,35 @@ import SurfData from './SurfData.jsx';
 const App = () => {
   const [user, setUser] = useState(null);
 
-  //check if the user is logged in
-  const fetchUser = async () => {
-    try {
-      console.log(process.env.NODE_ENV);
-      const response = await fetch('http://localhost:3000/user', {
-        credentials: 'include',
-      });
-      // console.log('here');
-      // console.log(response);
-      const data = await response.json();
-      console.log('data', data);
-      if (data) {
-        // console.log('user', data);
-        // setUser(data);
-      } else {
-        console.log('no user');
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
   useEffect(() => {
-    fetchUser();
+    (async () => {
+      try {
+        const url =
+          process.env.NODE_ENV === 'development'
+            ? 'http://localhost:3000'
+            : 'temp address for junosurf,com or whatever';
+        const response = await fetch(`${url}/user`, {
+          credentials: 'include',
+        });
+        const data = await response.json();
+        console.log(data);
+
+        if (data.user) {
+          const username = data.user.username;
+          const beach = data.user.beachCode ? data.user.beachCode : null;
+          setUser({ username, beach });
+        } else setUser(null);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
   }, []);
 
   return (
     <div id='wrapper'>
       <div id='app'>
-        <NavBar user={user} />
+        <NavBar user={user} setUser={setUser} />
         <SurfData />
-        <button onClick={fetchUser}>Fetch User</button>
       </div>
     </div>
   );
