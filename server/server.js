@@ -9,7 +9,7 @@ require('dotenv').config();
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
-const passportSetup = require('./passport.js');
+
 const dbSetup = require('./db.js');
 const User = require('./userSchema.js');
 
@@ -18,11 +18,6 @@ const buoysRouter = require('./routes/buoys.js');
 
 // //do I need this?
 app.use(bodyParser.json());
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: true,
-//   })
-// );
 app.use(urlencoded({ extended: true }));
 
 app.use(
@@ -50,7 +45,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+const passportSetup = require('./passport.js');
 app.use('/auth', authRouter);
 app.use('/buoys', buoysRouter);
 
