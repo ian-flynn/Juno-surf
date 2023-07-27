@@ -39,45 +39,45 @@ const SurfData = () => {
   const [gst, setGst] = useState(0);
   const [atmp, setAtmp] = useState(0);
 
-  useEffect(() => {
-    try {
-      fetch('/api/buoy')
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            let ocean = result.ocean[2].split(' ').filter((el) => el !== '');
-            // setRawData(result.ocean);
-            // setLatest(result.ocean[2]);
-            setDate(
-              `${ocean[1]}/${ocean[2]}/${ocean[0].slice(2)} ${
-                ocean[3] < 12
-                  ? ocean[3] - 3 + 'AM'
-                  : ocean[3] === 12
-                  ? ocean[3] - 3 + 'PM'
-                  : ocean[3] - 15 + 'PM'
-              }`
-            );
-            setWvht(ocean[8]);
-            setDpd(ocean[9]);
-            setApd(ocean[10]);
-            setMwd(ocean[11]);
-            setWtmp(ocean[14]);
+  // useEffect(() => {
+  //   try {
+  //     fetch('/api/buoy')
+  //       .then((res) => res.json())
+  //       .then(
+  //         (result) => {
+  //           let ocean = result.ocean[2].split(' ').filter((el) => el !== '');
+  //           // setRawData(result.ocean);
+  //           // setLatest(result.ocean[2]);
+  //           setDate(
+  //             `${ocean[1]}/${ocean[2]}/${ocean[0].slice(2)} ${
+  //               ocean[3] < 12
+  //                 ? ocean[3] - 3 + 'AM'
+  //                 : ocean[3] === 12
+  //                 ? ocean[3] - 3 + 'PM'
+  //                 : ocean[3] - 15 + 'PM'
+  //             }`
+  //           );
+  //           setWvht(ocean[8]);
+  //           setDpd(ocean[9]);
+  //           setApd(ocean[10]);
+  //           setMwd(ocean[11]);
+  //           setWtmp(ocean[14]);
 
-            let pier = result.pier[2].split(' ').filter((el) => el !== '');
-            setWdir(pier[5]);
-            setWspd(pier[6]);
-            setGst(pier[7]);
-            setAtmp(pier[13]);
-          },
-          (error) => {
-            console.log(error);
-            setRawData('whoops error getting that data');
-          }
-        );
-    } catch (err) {
-      console.log('error getting buoy data: ', err);
-    }
-  }, []);
+  //           let pier = result.pier[2].split(' ').filter((el) => el !== '');
+  //           setWdir(pier[5]);
+  //           setWspd(pier[6]);
+  //           setGst(pier[7]);
+  //           setAtmp(pier[13]);
+  //         },
+  //         (error) => {
+  //           console.log(error);
+  //           setRawData('whoops error getting that data');
+  //         }
+  //       );
+  //   } catch (err) {
+  //     console.log('error getting buoy data: ', err);
+  //   }
+  // }, []);
 
   const handleClick = (label) => {
     setInfoTitle(label);
