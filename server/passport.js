@@ -1,6 +1,5 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-console.log('passport setting up');
 const User = require('./userSchema.js');
 
 passport.serializeUser((user, done) => {
@@ -44,5 +43,3 @@ passport.use(
     }
   )
 );
-
-console.log('passport done setting up');
