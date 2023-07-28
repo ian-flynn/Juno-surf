@@ -16,8 +16,6 @@ const App = () => {
           credentials: 'include',
         });
         const data = await response.json();
-        console.log(data);
-
         if (data.user) {
           const username = data.user.username;
           const beach = data.user.beachCode ? data.user.beachCode : null;
