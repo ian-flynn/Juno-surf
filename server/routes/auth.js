@@ -19,20 +19,12 @@ router.get(
 );
 
 router.post('/logout', (req, res, next) => {
-  console.log('logging out route hit');
-
   req.logout((err) => {
     if (err) return next(err);
     req.session.destroy((err) => {
       if (err) return next(err);
-      console.log('session destroyed');
     });
-    return res
-      .status(200)
-      .clearCookie('connect.sid', {
-        path: '/',
-      })
-      .json('logged out');
+    return res.status(200).clearCookie('connect.sid').json('logged out');
   });
 });
 
