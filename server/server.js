@@ -20,14 +20,12 @@ app.use(
   })
 );
 
-// app.set('trust proxy', 1);
-
 // mongo session store
 app.use(
   session({
     secret: 'randomsecretstring',
-    // resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // 1 second, 1 min, 1 hour, 1 day
     },
@@ -43,24 +41,6 @@ require('./passport.js');
 
 app.use('/auth', authRouter);
 app.use('/buoys', buoysRouter);
-
-//
-// app.get(
-//   '/auth/google',
-//   passport.authenticate('google', {
-//     scope: ['profile'],
-//   })
-// );
-// app.get(
-//   '/auth/google/callback',
-//   passport.authenticate('google', {
-//     failureRedirect: process.env.CLIENT_URL,
-//     session: true,
-//   }),
-//   (req, res) => {
-//     return res.redirect(process.env.CLIENT_URL);
-//   }
-// );
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
