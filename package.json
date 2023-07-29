@@ -33,6 +33,7 @@
     "passport-google-oauth20": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2",
     "sass": "^1.59.3"
   },
   "devDependencies": {
