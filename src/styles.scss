@@ -1,43 +1,89 @@
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 //font-family: 'Rock Salt', cursive;
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Rock Salt', cursive;
+
+  --content-width: 1000px;
+  --page-background: rgb(248, 244, 219);
+  --page-background-dark: #cdbf95;
 }
 body {
-  background-color: seashell;
-  font-family: 'Rock Salt', cursive;
-  padding: 10px;
+  background-color: var(--page-background);
 }
 img {
   max-width: 100%;
-}
-#wrapper {
-  // background-color: red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-#app {
-  max-width: 450px;
+  max-height: 100%;
 }
 #navbar {
   z-index: 100;
-  background-color: #b9f1fe;
   position: fixed;
   top: 0;
   left: 0;
-  width: 80%;
-  height: 75px;
-  width: auto;
+  width: 100vw;
   display: flex;
   flex-direction: row;
-  border-bottom-right-radius: 30px;
-  #logo {
-    margin: 0.3rem 3rem 0.3rem 0.5rem;
+  justify-content: space-between;
+
+  #logo-container {
+    height: 80px;
+    background-color: #b9f1fe;
+    border-bottom-right-radius: 30px;
+    padding: 0.5rem 1rem 0.2rem 3rem;
+  }
+  #login-logout {
+    border-bottom-left-radius: 30px;
+    padding: 1rem 3rem 1rem 1rem;
+    border: none;
+    background-color: #b9f1fe;
+    transition: all 0.2s ease-in-out;
+    font-size: 1.3rem;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 60px;
+      left: 0.5rem;
+      width: 0px;
+      border-bottom: 2px solid black;
+      transition: inherit;
+      transform: rotate(-10deg);
+    }
+    &:hover {
+      background-color: #47daff;
+      padding-left: 2rem;
+      padding-right: 2rem;
+
+      &::before {
+        left: 1rem;
+        width: 99px;
+      }
+    }
+    &:active {
+      background-color: #37aecc;
+    }
+    &.logout:hover::before {
+      width: 120px;
+    }
   }
 }
+
+.pages {
+  max-width: var(--content-width);
+  padding: 1rem;
+  padding-top: 50px;
+  margin: 0 auto;
+  min-height: 100vh;
+  box-shadow: 0 0 100px 5px var(--page-background-dark);
+}
+.homepage {
+}
+// #app {
+//   max-width: 450px;
+// }
 
 #surf-data {
   margin-top: 80px;
