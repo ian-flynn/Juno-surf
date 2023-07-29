@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import logo from '../images/JunoSurfLogo.png';
-import Login from './Login.jsx';
 
-const NavBar = ({ user, setUser }) => {
+const NavBar = ({ user }) => {
   const googleLogin = () => {
     window.open('http://localhost:3000/auth/google', '_self');
   };
@@ -19,16 +18,15 @@ const NavBar = ({ user, setUser }) => {
 
   return (
     <div id='navbar'>
-      <img id='logo' src={logo} alt='Juno Surf' />
+      <div id='logo-container'>
+        <img src={logo} alt='Juno Surf' />
+      </div>
       {user ? (
-        <>
-          <p>welcome, {user.username}</p>
-          <button onClick={googleLogout}>Logout</button>
-        </>
+        <button id='login-logout' className='logout' onClick={googleLogout}>
+          Logout
+        </button>
       ) : (
-        <button onClick={googleLogin}>
-          Google
-          <br />
+        <button id='login-logout' onClick={googleLogin}>
           Login
         </button>
       )}

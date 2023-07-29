@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from './NavBar.jsx';
-import SurfData from './SurfData.jsx';
+import NavBar from './components/NavBar.jsx';
+import SurfData from './components/SurfData.jsx';
+import Homepage from './pages/Homepage.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -28,12 +30,13 @@ const App = () => {
   }, []);
 
   return (
-    <div id='wrapper'>
-      <div id='app'>
-        <NavBar user={user} setUser={setUser} />
-        <SurfData />
-      </div>
-    </div>
+    <BrowserRouter>
+      <NavBar user={user} />
+      <Routes>
+        <Route path='/' exact element={<Homepage />} />
+        {/* add route for eventual login page */}
+      </Routes>
+    </BrowserRouter>
   );
 };
 
